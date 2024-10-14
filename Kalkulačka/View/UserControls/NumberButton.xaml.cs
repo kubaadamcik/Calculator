@@ -17,27 +17,13 @@ using System.Windows.Shapes;
 namespace Kalkulačka.View.UserControls
 {
 	/// <summary>
-	/// Interakční logika pro Tlacitko.xaml
+	/// Interaction logic for NumberButton.xaml
 	/// </summary>
-	/// 
-	public partial class Tlacitko : UserControl
+	public partial class NumberButton : UserControl
 	{
-		public Tlacitko()
+		public NumberButton()
 		{
 			InitializeComponent();
 		}
-
-		private int _num;
-
-		public int num
-		{
-			get { return _num; }
-			set { _num = value; }
-		}
-
-		private void btnCislo_Click(object sender, RoutedEventArgs e)
-		{
-
-        }
-    }
+	}
 }

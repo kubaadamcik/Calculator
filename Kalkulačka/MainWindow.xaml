@@ -3,29 +3,32 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:buttons="clr-namespace:Kalkulačka.View.UserControls"
         xmlns:local="clr-namespace:Kalkulačka"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="400">
     <Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="0.4*"/>
-			<RowDefinition/>
-		</Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="0.4*"/>
+          <RowDefinition/>
+        </Grid.RowDefinitions>
 
-		<Grid Grid.Row="1">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-			</Grid.ColumnDefinitions>
+        <Grid Grid.Row="1">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+          </Grid.ColumnDefinitions>
 
-			<Grid.RowDefinitions>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-			</Grid.RowDefinitions>
+          <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+          </Grid.RowDefinitions>
+
+			<buttons:NumberButton Content="0">
 		</Grid>
     </Grid>
 </Window>
