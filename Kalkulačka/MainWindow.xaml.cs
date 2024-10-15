@@ -23,11 +23,11 @@ namespace Kalkulačka
 			InitializeComponent();
 		}
 
-		private int _number;
+		private int? _number;
 
 		public event PropertyChangedEventHandler? PropertyChanged;
 
-		public int Number
+		public int? Number
 		{
 			get { return _number; }
 			set 
@@ -41,15 +41,27 @@ namespace Kalkulačka
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
 			Button? tlacitko = sender as Button;
+			int cislice;
 
 			if (tlacitko != null)
 			{
+				if (int.TryParse(tlacitko.Content.ToString(), out cislice))
+				{
+					AddNumber(cislice);
+				}
 			}
 		}
 
-		private static void AddNumber(int number)
+		private void AddNumber(int number)
 		{
-
+			if (Number == null)
+			{
+				Number = number;
+			}
+			else
+			{
+				Number = int.Parse(Number.ToString() + number.ToString());
+			}
 		}
 	}
 }
