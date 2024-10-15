@@ -25,7 +25,6 @@ namespace Kalkulačka
 
 		private int? _number;
 
-		public event PropertyChangedEventHandler? PropertyChanged;
 
 		public int? Number
 		{
@@ -37,6 +36,14 @@ namespace Kalkulačka
 				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Number"));
 			}
 		}
+
+		public event PropertyChangedEventHandler? PropertyChanged;
+
+		private int? _firstNumber;
+
+		private char? _currentAction;
+
+		private bool _showingResult = false;
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
@@ -54,13 +61,66 @@ namespace Kalkulačka
 
 		private void AddNumber(int number)
 		{
-			if (Number == null)
+			if (Number == null || _showingResult == true)
 			{
 				Number = number;
+
+				_showingResult = false;
 			}
 			else
 			{
 				Number = int.Parse(Number.ToString() + number.ToString());
+			}
+		}
+
+		private void Button_Do_Action(object sender, RoutedEventArgs eventArgs)
+		{
+			Button? tlacitko = sender as Button;
+			char action;
+
+			if (tlacitko != null && char.TryParse(tlacitko.Content.ToString(), out action))
+			{
+				_currentAction = action;
+				_firstNumber = Number;
+				Number = null;
+			}
+		}
+
+		private void Button_Calculate(object sender, RoutedEventArgs eventArgs)
+		{
+			Calculate(_firstNumber, Number, _currentAction);
+
+			_firstNumber = null;
+			_currentAction = null;
+		}
+
+		private void Calculate(int? first_number, int? second_number, char? action)
+		{
+			switch (action.ToString())
+			{
+				case "*":
+					Number = first_number * second_number;
+
+					_showingResult = true;
+					break;
+				case "/":
+					Number = first_number / second_number;
+
+					_showingResult = true;
+					break;
+				case "+":
+					Number = first_number + second_number;
+
+					_showingResult = true;
+					break;
+				case "-":
+					Number = first_number - second_number;
+
+					_showingResult = true;
+					break;
+				default:
+					MessageBox.Show("Něco se pokazilo", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+					break;
 			}
 		}
 	}
