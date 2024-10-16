@@ -94,6 +94,14 @@ namespace Kalkulačka
 			_currentAction = null;
 		}
 
+		private void Button_Delete(object sender, RoutedEventArgs e)
+		{
+			Number = null;
+			_firstNumber = null;
+			_currentAction = null;
+			_showingResult = false;
+		}
+
 		private void Calculate(int? first_number, int? second_number, char? action)
 		{
 			switch (action.ToString())
@@ -104,9 +112,16 @@ namespace Kalkulačka
 					_showingResult = true;
 					break;
 				case "/":
-					Number = first_number / second_number;
+					if (second_number != 0)
+					{ 
+						Number = first_number / second_number;
+                        _showingResult = true;
+                    }
+					else
+					{
+						MessageBox.Show("Nelze dělit nulou", "Dělení nulou", MessageBoxButton.OK, MessageBoxImage.Error);
+					}
 
-					_showingResult = true;
 					break;
 				case "+":
 					Number = first_number + second_number;
